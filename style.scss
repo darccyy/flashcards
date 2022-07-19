@@ -1,0 +1,163 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080724;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-size: 200%;
+  padding-top: 10px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+// Parent of all flashcards
+.contain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  // Single flashcard
+  .flashcard {
+    position: absolute;
+    width: clamp(100px, 75%, 500px);
+    aspect-ratio: 8/5;
+    font-size: min(10vw, 55px);
+    user-select: none;
+    cursor: pointer;
+
+    // Left, right
+    $edge: clamp(0px, 10vw, 100px);
+    &:nth-child(1) {
+      left: 0;
+      top: 50%;
+      transform: translate(calc(-100% + #{$edge}), -50%);
+    }
+    &:nth-child(3) {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(calc(100% - #{$edge}), -50%);
+    }
+    // Centered
+    &:nth-child(2),
+    &.only {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    // Rest
+    &:nth-child(n + 4) {
+      display: none;
+    }
+
+    // Left / right translation animations
+    $translate-time: 0.5s;
+    .position {
+      width: 100%;
+      height: 100%;
+      &.left {
+        animation: left $translate-time ease-out;
+      }
+      &.right {
+        animation: right $translate-time ease-out;
+      }
+      @keyframes left {
+        from {
+          transform: translateX(-100%);
+        }
+      }
+      @keyframes right {
+        from {
+          transform: translateX(100%);
+        }
+      }
+    }
+
+    // Only centered child is bright
+    transition: filter $translate-time;
+    &:not(:nth-child(2), .only) {
+      filter: brightness(50%);
+    }
+
+    // Show only flipped side
+    &[flip] .side.top,
+    &:not([flip]) .side.bottom {
+      visibility: hidden;
+    }
+
+    // Flip animation
+    &.flipping {
+      $flip-time: 0.4s;
+      .position {
+        perspective: 500px;
+      }
+
+      &[flip] .side.top {
+        animation: flip-a $flip-time ease-in;
+        visibility: hidden;
+      }
+      &[flip] .side.bottom {
+        animation: flip-b $flip-time ease-out;
+      }
+      &:not([flip]) .side.top {
+        animation: flip-b $flip-time ease-out;
+      }
+      &:not([flip]) .side.bottom {
+        animation: flip-a $flip-time ease-in;
+        visibility: hidden;
+      }
+    }
+    @keyframes flip-a {
+      0% {
+        visibility: visible;
+      }
+      50%,
+      100% {
+        visibility: hidden;
+        transform: rotateX(-90deg);
+      }
+    }
+    @keyframes flip-b {
+      0%,
+      50% {
+        visibility: hidden;
+        transform: rotateX(90deg);
+      }
+      100% {
+        visibility: visible;
+        transform: rotateX(0deg);
+      }
+    }
+
+    // Displayed side
+    .side {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: min(5vh, 5vw);
+      background-color: #252D45;
+
+      h1 {
+        margin: 5% 0;
+        font-size: 100%;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 60%;
+        font-weight: 500;
+      }
+    }
+  }
+}

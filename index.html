@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Flashcard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-latest.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://fortissimojs.github.io/index.vanilla.min.js"
+    ></script>
+    <script type="text/javascript" src="./script.js"></script>
+  </head>
+  <body>
+    <h1>Flashcards</h1>
+
+    <div class="contain"></div>
+  </body>
+</html>
+
+<contain style="display: none; visibility: hidden">
+  <template name="flashcard">
+    <article class="flashcard">
+      <div class="position">
+        <section class="side top">
+          <h1>{top}</h1>
+        </section>
+        <section class="side bottom">
+          <h1>{bottom}</h1>
+          <h2>{desc}</h2>
+        </section>
+      </div>
+    </article>
+  </template>
+</contain>
