@@ -53,10 +53,10 @@ h1 {
   height: 100%;
 }
 .contain .flashcard .position.left {
-  animation: left 0.5s ease-out;
+  animation: left 0.5s ease;
 }
 .contain .flashcard .position.right {
-  animation: right 0.5s ease-out;
+  animation: right 0.5s ease;
 }
 @keyframes left {
   from {
