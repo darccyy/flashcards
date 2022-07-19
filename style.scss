@@ -68,12 +68,12 @@ h1 {
       }
       @keyframes left {
         from {
-          transform: translateX(-100%);
+          transform: translateX(calc(0px - (50vw + 100% - #{$edge} * 4)));
         }
       }
       @keyframes right {
         from {
-          transform: translateX(100%);
+          transform: translateX(calc(50vw + 100% - #{$edge} * 4));
         }
       }
     }
@@ -144,7 +144,7 @@ h1 {
       align-items: center;
       justify-content: center;
       border-radius: min(5vh, 5vw);
-      background-color: #252D45;
+      background-color: #252d45;
 
       h1 {
         margin: 5% 0;
