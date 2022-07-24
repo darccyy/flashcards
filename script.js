@@ -24,7 +24,7 @@ const flashcards = [
     bottom: "Sulphate",
   },
   {
-    top: "HC0-3",
+    top: "HCO-3",
     bottom: "Hydrogen Carbonate",
   },
 ];
